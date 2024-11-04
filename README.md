@@ -1,19 +1,19 @@
 # 8-bit Hero
 
-A rhythm-based game coded in C and 68000 assembly for Atari systems.
+A rhythm-based game, coded in C and MC68000 assembly for Atari systems.
 
 ## Project Overview
-*8-bit Hero* is a retro-style rhythm game where players must hit notes accurately in time with 8-bit music. Built for Atari emulation with C and 68000 assembly.
+*8-bit Hero* is a retro-style rhythm game where players must hit notes accurately in time with 8-bit music. Built for Atari emulation with C and MC68000 assembly.
 
 ## Gameplay
-Players press buttons to match incoming notes as they scroll across the screen. Hitting notes at the right time earns points, while misses decrease the fail bar, miss to many and you fail the song.
+Players press buttons to match incoming notes as they scroll across the screen. Hitting notes at the right time earns points, while misses decrease the fail bar, miss too many and you fail the song.
 
 ## Controls
 - **A/S/D/F Buttons**: Hit notes in time with the beat.
 - **Enter**: Begin the game.
 
 ## Installation
-To play *8-bit Hero*, you’ll need the Steem emulator and the "full game" folder.
+To play *8-bit Hero*, you’ll need the Steem emulator and all files contained in this repo.
 
 1. Download the "full game" folder from this repository.
 2. Ensure you have the [Steem Emulator](http://steem.atari.st/) installed.

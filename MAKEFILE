@@ -1,0 +1,76 @@
+# Executable file produced
+TARGET=EBH
+
+# Object files needed for target
+OBJECTS=EBH.o renderer.o model.o events.o raster.o bitmaps.o rast_asm.o inputs.o psg.o music.o effects.o songdat.o isr.o isr_asm.o vbl.o super.o ikbd.o ikbdisr.o
+
+# C compiler and flags
+CC=cc68x
+CFLAGS=-g
+
+# Building the target
+all: clean $(TARGET)
+
+# Linking target executable from object files
+$(TARGET): $(OBJECTS)
+	$(CC) $(OBJECTS) -o $(TARGET)
+
+bitmaps.o: bitmaps.c bitmaps.h
+	$(CC) $(CFLAGS) -c bitmaps.c
+
+EBH.o: EBH.c types.h model.h events.h renderer.h rast_asm.h inputs.h raster.h effects.h music.h psg.h isr.h isr_asm.h vbl.h globals.h super.h ebh.h
+	$(CC) $(CFLAGS) -c EBH.c
+
+super.o: super.c super.h globals.h
+	$(CC) $(CFLAGS) -c super.c 
+
+effects.o: effects.c psg.h types.h sndconst.h super.h
+	$(CC) $(CFLAGS) -c effects.c 
+
+events.o: events.c model.h types.h raster.h effects.c psg.h
+	$(CC) $(CFLAGS) -c events.c
+
+inputs.o: inputs.c types.h inputs.h raster.h events.h
+	$(CC) $(CFLAGS) -c inputs.c
+
+isr.o: isr.c isr_asm.h
+	$(CC) $(CFLAGS) -c isr.c
+
+isr_asm.o: isr_asm.s isr.h
+	gen -D -L2 isr_asm.s
+
+vbl.o: vbl.c vbl.h types.h globals.h events.h model.h music.h psg.h
+	$(CC) $(CFLAGS) -c vbl.c
+
+model.o: model.c model.h types.h
+	$(CC) $(CFLAGS) -c model.c
+
+music.o: music.c music.h psg.h types.h songdat.h sndconst.h
+	$(CC) $(CFLAGS) -c music.c 
+
+psg.o: psg.c psg.h types.h
+	$(CC) $(CFLAGS) -c psg.c
+
+rast_asm.o: rast_asm.s
+	gen -D -L2 rast_asm.s
+
+raster.o: raster.c types.h raster.h
+	$(CC) $(CFLAGS) -c raster.c
+
+renderer.o: renderer.c types.h model.h renderer.h bitmaps.h raster.h events.h effects.h psg.h super.h
+	$(CC) $(CFLAGS) -c renderer.c
+
+songdat.o: songdat.c songdat.h sndconst.h types.h
+	$(CC) $(CFLAGS) -c songdat.c
+
+ikbd.o: ikbd.c isr.h super.h types.h globals.h
+	$(CC) $(CFLAGS) -c ikbd.c 
+
+ikbdisr.o: ikbdisr.s ikbdisr.h
+	gen -D -L2 ikbdisr.s
+
+# Cleaning up the old object files and executable
+clean:
+	$(RM) *.o $(TARGET)
+
+# DON'T DELETE THIS LINE OR IT BREAKS
